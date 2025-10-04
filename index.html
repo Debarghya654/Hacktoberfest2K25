@@ -1,69 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacktoberfest2025 Contributors</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hacktoberfest 2025 — Contributors</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    :root {
+      --hf-purple: #6c63ff;
+      --hf-orange: #ff7043;
+      --hf-bg: #f8f8ff;
+      --hf-dark: #222;
+      --hf-radius: 14px;
+      --hf-transition: all 0.3s ease;
+    }
 
-    <link rel="stylesheet" href="css/style.css">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--hf-bg);
+      color: var(--hf-dark);
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar-glass {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-weight: 700;
+      color: var(--hf-purple);
+      font-size: 1.4rem;
+    }
+
+    .nav-link {
+      color: var(--hf-dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--hf-transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link:hover {
+      color: var(--hf-orange);
+      transform: scale(1.05);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+      color: #fff;
+      text-align: center;
+      padding: 5rem 1.5rem;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1.5s ease;
+    }
+
+    .subtitle {
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .cta-button {
+      background: #fff;
+      color: var(--hf-purple);
+      border: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: var(--hf-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--hf-transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background: var(--hf-orange);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    /* Main */
+    main {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--hf-purple);
+      border-bottom: 3px solid var(--hf-orange);
+      display: inline-block;
+      margin-bottom: 2rem;
+      padding-bottom: 0.3rem;
+    }
+
+    /* Search Bar */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: var(--hf-radius);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 80%;
+      max-width: 500px;
+      transition: var(--hf-transition);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      padding: 0.8rem 1rem;
+      width: 100%;
+      font-size: 1rem;
+      background: transparent;
+    }
+
+    .search-icon, .search-button i {
+      font-size: 1.3rem;
+      color: var(--hf-purple);
+    }
+
+    .search-button {
+      background: var(--hf-purple);
+      border: none;
+      color: #fff;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      transition: var(--hf-transition);
+    }
+
+    .search-button:hover {
+      background: var(--hf-orange);
+    }
+
+    /* Contributors Grid */
+    #contributors-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contributor-card {
+      background: #fff;
+      border-radius: var(--hf-radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.2rem;
+      transition: var(--hf-transition);
+      text-align: center;
+    }
+
+    .contributor-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .contributor-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 0.8rem;
+      border: 3px solid var(--hf-purple);
+    }
+
+    .contributor-card h3 {
+      margin: 0.3rem 0;
+      color: var(--hf-dark);
+      font-size: 1.1rem;
+    }
+
+    .contributor-card a {
+      color: var(--hf-orange);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    /* Load More Button */
+    #load-more-container {
+      margin-top: 2.5rem;
+    }
+
+    #load-more-button {
+      background: var(--hf-purple);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: var(--hf-radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--hf-transition);
+    }
+
+    #load-more-button:hover {
+      background: var(--hf-orange);
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--hf-dark);
+      color: #fff;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* Loader */
+    #loader {
+      display: none;
+      margin: 2rem auto;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--hf-purple);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.9rem; }
+      .section-title { font-size: 1.5rem; }
+      .cta-button { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar-glass">
+      <h2 class="logo">Contributor Showcase</h2>
+      <a href="https://github.com/withaarzoo/Hacktoberfest2025" target="_blank" class="nav-link">
+        <i class="ri-github-fill"></i> GitHub Repo
+      </a>
+    </nav>
 
-    <div class="container">
-        <nav class="navbar-glass">
-            <h2 class="logo">Contributor Showcase</h2>
-            <a href="https://github.com/withaarzoo/Hacktoberfest2025" target="_blank" class="nav-link">
-                <i class="ri-github-fill"></i> GitHub Repo
-            </a>
-        </nav>
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Meet Our Amazing Community</h1>
+        <p class="subtitle">
+          A heartfelt thank-you to all the developers who have contributed their time and expertise to this project.
+        </p>
+        <a href="https://github.com/withaarzoo/Hacktoberfest2025" target="_blank" class="cta-button">
+          View on GitHub
+        </a>
+      </div>
+    </header>
 
-        <header class="hero">
-            <div class="hero-content">
-                <h1>Meet Our Amazing Community</h1>
-                <p class="subtitle">A heartfelt thank-you to all the developers who have contributed their time and
-                    expertise to this project.</p>
-                <a href="https://github.com/withaarzoo/Hacktoberfest2025" target="_blank" class="cta-button">View on
-                    GitHub</a>
-            </div>
-        </header>
+    <!-- Main Section -->
+    <main>
+      <h2 class="section-title">Our Contributors</h2>
 
-        <main>
-            <h2 class="section-title">Our Contributors</h2>
+      <div class="search-container">
+        <form id="search-form" class="search-bar">
+          <i class="ri-search-line search-icon"></i>
+          <input type="text" id="search-input" placeholder="Search by username...">
+          <button type="submit" class="search-button">
+            <i class="ri-arrow-right-line"></i>
+          </button>
+        </form>
+      </div>
 
-            <div class="search-container">
-                <form id="search-form" class="search-bar">
-                    <i class="ri-search-line search-icon"></i>
-                    <input type="text" id="search-input" placeholder="Search by username...">
-                    <button type="submit" class="search-button">
-                        <i class="ri-arrow-right-line"></i>
-                    </button>
-                </form>
-            </div>
+      <div id="loader"></div>
+      <div id="contributors-container">
+        <!-- Example Contributor (for preview only) -->
+        <div class="contributor-card">
+          <img src="https://avatars.githubusercontent.com/u/9919?v=4" alt="GitHub User">
+          <h3>GitHub</h3>
+          <a href="https://github.com/github" target="_blank">@github</a>
+        </div>
+      </div>
 
-            <div id="loader"></div>
-            <div id="contributors-container">
-            </div>
+      <div id="load-more-container">
+        <button id="load-more-button">Load More</button>
+      </div>
+    </main>
 
-            <div id="load-more-container">
-                <button id="load-more-button" class="cta-button">Load More</button>
-            </div>
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Contributor Showcase. Built with ❤️ by the community.</p>
+    </footer>
+  </div>
 
-        </main>
+  <script>
+    // Simple JS animation placeholders
+    const searchForm = document.getElementById("search-form");
+    const loader = document.getElementById("loader");
 
-        <footer>
-            <p>&copy; 2025 Contributor Showcase. Built with ❤️.</p>
-        </footer>
-    </div>
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      loader.style.display = "block";
+      setTimeout(() => {
+        loader.style.display = "none";
+        alert("Search functionality coming soon!");
+      }, 1200);
+    });
 
-    <script src="js/main.js"></script>
+    document.getElementById("load-more-button").addEventListener("click", () => {
+      alert("Load more contributors coming soon!");
+    });
+  </script>
 </body>
-
 </html>
